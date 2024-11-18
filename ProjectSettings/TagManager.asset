@@ -9,6 +9,10 @@ TagManager:
   - player
   - wall-side
   - wall-top
+  - brick-y
+  - brick-g
+  - brick-o
+  - brick-b
   layers:
   - Default
   - TransparentFX
