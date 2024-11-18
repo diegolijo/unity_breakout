@@ -27,10 +27,10 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
-
+        Debug.Log(tag);
         if (tag == "bottom")
         {
-            StartCoroutine(LaunchBall());
+
         }
 
     }
@@ -38,8 +38,8 @@ public class BallController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         string tag = collider.tag;
-        Debug.Log(tag);
-        if (tag == "")
+
+        if (tag == "bottom")
         {
 
             StartCoroutine(LaunchBall());
