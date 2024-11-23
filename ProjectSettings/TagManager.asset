@@ -12,7 +12,7 @@ TagManager:
   - brick-y
   - brick-g
   - brick-o
-  - brick-b
+  - brick-r
   layers:
   - Default
   - TransparentFX

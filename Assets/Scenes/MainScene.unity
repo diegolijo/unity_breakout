@@ -335,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (2)
+      value: Brick-R (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (6)
+      value: Brick-R (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -768,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (7)
+      value: Brick-R (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1343,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B
+      value: Brick-R
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2194,7 +2194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (1)
+      value: Brick-R (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2256,7 +2256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (3)
+      value: Brick-R (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2357,7 +2357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (5)
+      value: Brick-R (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2543,7 +2543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726139465117518746, guid: eac92aa80bcb85046a583e9819d1d32c, type: 3}
       propertyPath: m_Name
-      value: Brick-B (4)
+      value: Brick-R (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

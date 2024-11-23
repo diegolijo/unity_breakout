@@ -5,10 +5,10 @@ public class BallController : MonoBehaviour
 {
     Dictionary<string, int> bricks = new Dictionary<string, int>
     {
-        {"brick-b", 1},
-        {"brick-o", 2},
-        {"brick-g", 5},
-        {"brick-y", 10},
+        {"brick-r", 10},
+        {"brick-o", 5},
+        {"brick-g", 2},
+        {"brick-y", 1},
     };
     Rigidbody2D rb;
     [SerializeField] GameManager manager;
