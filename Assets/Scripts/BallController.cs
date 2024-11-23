@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 public class BallController : MonoBehaviour
 {
+    Dictionary<string, int> bricks = new Dictionary<string, int>
+    {
+        {"brick-b", 1},
+        {"brick-o", 2},
+        {"brick-g", 5},
+        {"brick-y", 10},
+    };
     Rigidbody2D rb;
     [SerializeField] GameManager manager;
     [SerializeField] float force;
@@ -27,10 +33,19 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
-        Debug.Log(tag);
-        if (tag == "bottom")
+        if (tag == "player")
         {
+            ContactPoint2D contacts = collision.GetContact(0);
+            Debug.Log(tag + " contanct: " + contacts.point.x + "  position: " + transform.position.x + " diff: " + (transform.position.x - contacts.point.x));
+            // fuerza necesaria para recuperar la velocidad actual desde el reposo
+            Vector2 newForce = rb.velocity * rb.mass;
+            rb.velocity = Vector2.zero;
+            rb.AddForce(newForce * 1.0f, ForceMode2D.Impulse);
+        }
 
+        if (bricks.ContainsKey(tag))
+        {
+            Destroy(collision.gameObject);
         }
 
     }
@@ -38,10 +53,8 @@ public class BallController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         string tag = collider.tag;
-
         if (tag == "bottom")
         {
-
             StartCoroutine(LaunchBall());
         }
     }
