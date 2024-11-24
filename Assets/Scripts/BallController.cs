@@ -11,7 +11,7 @@ public class BallController : MonoBehaviour
         {"brick-y", 1},
     };
     Rigidbody2D rb;
-    [SerializeField] GameManager manager;
+    [SerializeField] GameManager game;
     [SerializeField] float force;
     [SerializeField] float MAX_DEG = 30f;
     public Vector3 resetPosition;
@@ -50,6 +50,8 @@ public class BallController : MonoBehaviour
 
         if (bricks.ContainsKey(tag))
         {
+            Debug.Log("" + tag + "");
+            game.AddScore(bricks[tag]);
             Destroy(collision.gameObject);
         }
 
@@ -60,6 +62,7 @@ public class BallController : MonoBehaviour
         string tag = collider.tag;
         if (tag == "bottom")
         {
+            game.consumeLife();
             StartCoroutine(LaunchBall());
         }
     }

@@ -13,6 +13,8 @@ TagManager:
   - brick-g
   - brick-o
   - brick-r
+  - score
+  - lifes
   layers:
   - Default
   - TransparentFX
