@@ -35,10 +35,15 @@ public class BallController : MonoBehaviour
         string tag = collision.gameObject.tag;
         if (tag == "player")
         {
-            ContactPoint2D contacts = collision.GetContact(0);
-            Debug.Log(tag + " contanct: " + contacts.point.x + "  position: " + transform.position.x + " diff: " + (transform.position.x - contacts.point.x));
+            ContactPoint2D contact = collision.GetContact(0);
+            float diff = collision.gameObject.transform.position.x - contact.point.x;
+            Debug.Log(diff);
             // fuerza necesaria para recuperar la velocidad actual desde el reposo
             Vector2 newForce = rb.velocity * rb.mass;
+            if ((rb.velocity.x > 0 && diff > 0) || (rb.velocity.x < 0 && diff < 0))
+            {
+                newForce.x *= -1;
+            }
             rb.velocity = Vector2.zero;
             rb.AddForce(newForce * 1.0f, ForceMode2D.Impulse);
         }
