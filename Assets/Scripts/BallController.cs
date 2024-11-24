@@ -13,7 +13,7 @@ public class BallController : MonoBehaviour
     Rigidbody2D rb;
     AudioSource aSource;
     [SerializeField] GameManager game;
-    [SerializeField] float force;
+    [SerializeField] float initialForce = 5f;
     [SerializeField] float MAX_DEG = 30f;
     public Vector3 resetPosition;
     private int delay = 1;
@@ -22,13 +22,22 @@ public class BallController : MonoBehaviour
     [SerializeField] AudioClip fxBrick;
     [SerializeField] AudioClip fxWall;
     [SerializeField] AudioClip fxFail;
+
+    int countColisionPlayer = 0;
+    [SerializeField] float incForce = 1f;
+    Vector3 playerScale;
+    GameObject player;
+
     void Start()
     {
-        force = 5f;
+        StartCoroutine(LaunchBall());
+
+        player = GameObject.FindWithTag("player");
+        playerScale = player.transform.localScale;
+
         resetPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         aSource = GetComponent<AudioSource>();
-        StartCoroutine(LaunchBall());
     }
 
     void Update()
@@ -44,6 +53,12 @@ public class BallController : MonoBehaviour
         {
             aSource.clip = fxWall;
             aSource.Play();
+            if (tag == "wall-top")
+            {
+                Vector3 scale = playerScale;
+                scale.x *= 0.5f;
+                player.transform.localScale = scale;
+            }
         }
         if (tag == "player")
         {
@@ -51,15 +66,22 @@ public class BallController : MonoBehaviour
             aSource.Play();
             ContactPoint2D contact = collision.GetContact(0);
             float diff = collision.gameObject.transform.position.x - contact.point.x;
-            Debug.Log(diff);
             // fuerza necesaria para recuperar la velocidad actual desde el reposo
-            Vector2 newForce = rb.velocity * rb.mass;
+            Vector2 currentForce = rb.velocity * rb.mass;
+            // cambio de sentido de la pelota
             if ((rb.velocity.x > 0 && diff > 0) || (rb.velocity.x < 0 && diff < 0))
             {
-                newForce.x *= -1;
+                currentForce.x *= -1;
+            }
+            // aumentar velocidad pelota
+            countColisionPlayer += 1;
+            if (countColisionPlayer % 4 == 0)
+            {
+                currentForce = currentForce * (1.0f + incForce);
+                Debug.Log("add force" + (1.0f + incForce));
             }
             rb.velocity = Vector2.zero;
-            rb.AddForce(newForce * 1.0f, ForceMode2D.Impulse);
+            rb.AddForce(currentForce, ForceMode2D.Impulse);
         }
 
         if (bricks.ContainsKey(tag))
@@ -81,6 +103,8 @@ public class BallController : MonoBehaviour
             aSource.clip = fxFail;
             aSource.Play();
             game.consumeLife();
+            countColisionPlayer = 0;
+            player.transform.localScale = playerScale;
             StartCoroutine(LaunchBall());
         }
     }
@@ -96,6 +120,6 @@ public class BallController : MonoBehaviour
         float y = Mathf.Cos(deg) * -1;
         Vector2 impulse = new Vector2(x, y);
         rb.velocity = Vector2.zero;
-        rb.AddForce(impulse * force, ForceMode2D.Impulse);
+        rb.AddForce(impulse * initialForce, ForceMode2D.Impulse);
     }
 }

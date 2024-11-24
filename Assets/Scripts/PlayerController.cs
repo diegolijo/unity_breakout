@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    float MAX_X = 3.25f;
-    float MIN_X = -3.25f;
+    float MAX_X = 3.75f;
+    float MIN_X = -3.75f;
     [SerializeField] float speed;
     void Start()
     {
@@ -26,14 +26,14 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 newPosition = transform.position;
-        if (transform.position.x > MAX_X)
+        if (transform.position.x > MAX_X - transform.localScale.x/2)
         {
-            newPosition.x = MAX_X;
+            newPosition.x = MAX_X - transform.localScale.x/2;
             transform.position = newPosition;
         }
-        if (transform.position.x < MIN_X)
+        if (transform.position.x < MIN_X + transform.localScale.x/2)
         {
-            newPosition.x = MIN_X;
+            newPosition.x = MIN_X + transform.localScale.x/2;
             transform.position = newPosition;
         }
     }

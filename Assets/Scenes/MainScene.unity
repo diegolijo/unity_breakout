@@ -681,13 +681,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 1539717347}
-  force: 0
+  initialForce: 5
   MAX_DEG: 45
   resetPosition: {x: 0, y: 0, z: 0}
   fxPadle: {fileID: 8300000, guid: 3692183e49febe24fa4acff25c999e8b, type: 3}
   fxBrick: {fileID: 8300000, guid: 1ff75cdcc7eff9b4b9b5eb259641fac3, type: 3}
   fxWall: {fileID: 8300000, guid: e347d4ecd1581ce43a2ea539a0152479, type: 3}
   fxFail: {fileID: 8300000, guid: 46bcde3724ffa764ea097fd4d1dc22ef, type: 3}
+  incForce: 0.2
 --- !u!58 &374621851
 CircleCollider2D:
   m_ObjectHideFlags: 0
