@@ -11,17 +11,23 @@ public class BallController : MonoBehaviour
         {"brick-y", 1},
     };
     Rigidbody2D rb;
+    AudioSource aSource;
     [SerializeField] GameManager game;
     [SerializeField] float force;
     [SerializeField] float MAX_DEG = 30f;
     public Vector3 resetPosition;
     private int delay = 1;
 
+    [SerializeField] AudioClip fxPadle;
+    [SerializeField] AudioClip fxBrick;
+    [SerializeField] AudioClip fxWall;
+    [SerializeField] AudioClip fxFail;
     void Start()
     {
         force = 5f;
         resetPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        aSource = GetComponent<AudioSource>();
         StartCoroutine(LaunchBall());
     }
 
@@ -33,8 +39,16 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
+
+        if (tag == "wall-side" || tag == "wall-top")
+        {
+            aSource.clip = fxWall;
+            aSource.Play();
+        }
         if (tag == "player")
         {
+            aSource.clip = fxPadle;
+            aSource.Play();
             ContactPoint2D contact = collision.GetContact(0);
             float diff = collision.gameObject.transform.position.x - contact.point.x;
             Debug.Log(diff);
@@ -50,6 +64,8 @@ public class BallController : MonoBehaviour
 
         if (bricks.ContainsKey(tag))
         {
+            aSource.clip = fxBrick;
+            aSource.Play();
             Debug.Log("" + tag + "");
             game.AddScore(bricks[tag]);
             Destroy(collision.gameObject);
@@ -62,6 +78,8 @@ public class BallController : MonoBehaviour
         string tag = collider.tag;
         if (tag == "bottom")
         {
+            aSource.clip = fxFail;
+            aSource.Play();
             game.consumeLife();
             StartCoroutine(LaunchBall());
         }
